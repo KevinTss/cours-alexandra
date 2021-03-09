@@ -1,140 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meteo</title>
-  <style>
-    .box {
-      border: 4px solid pink;
-      width: 800px;
-      height: 600px;
-      margin: 0 auto;
-    }
-    .top {
-      width: 100%;
-      height: 50%;
-      display: flex;
-    }
-    .bottom {
-      width: 100%;
-      height: 50%;
-    }
-    .card {
-      height: 100%;
-    }
-    .form-search {
-      width: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .current-temperature {
-      width: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    .current-temperature > p {
-      font-size: 36px;
-      margin-right: 10px;
-    }
-    .current-temperature > div {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    .current-temperature span {
-      font-size: 66px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meteo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/d61ad15ea9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="top p-4">
+        <form class="form-search">
+          <input class="form-control" type="text" placeholder="City" />
+          <input class="btn btn-primary" type="button" value="Search" />
+        </form>
 
-  </style>
-  <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/d61ad15ea9.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div class="box">
-
-    <div class="top p-4">
-
-      <form class="form-search">
-        <input class="form-control" type="text" placeholder="City">
-        <input class="btn btn-primary" type="button" value="Search">
-      </form>
-
-      <div class="current-temperature">
-        <p>Paris</p>
-        <div>
-          <i class="fas fa-cloud-sun-rain fa-3x"></i>
-          <span>18°C</span>
+        <div class="current-temperature">
+          <p>Paris</p>
+          <div>
+            <i class="fas fa-cloud-sun-rain fa-3x"></i>
+            <span>18°C</span>
+          </div>
         </div>
       </div>
 
-    </div>
-
-    <div class="bottom d-flex align-items-stretch">
-      <div class="container p-4 d-flex align-items-stretch">
-        <div class="row d-flex align-items-stretch">
-          <div class="col-sm">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Monday</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Jan 21</h6>
-                <p class="card-text">
-                  9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
-                </p>
+      <div class="bottom d-flex align-items-stretch">
+        <div class="container p-4 d-flex align-items-stretch">
+          <div class="row d-flex align-items-stretch">
+            <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Monday</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Jan 21</h6>
+                  <p class="card-text">
+                    9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Tuesday</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Jan 22</h6>
-                <p class="card-text">
-                  9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
-                </p>
+            <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Tuesday</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Jan 22</h6>
+                  <p class="card-text">
+                    9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Wednesday</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Jan 23</h6>
-                <p class="card-text">
-                  9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
-                </p>
+            <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Wednesday</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Jan 23</h6>
+                  <p class="card-text">
+                    9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Thursday</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Jan 24</h6>
-                <p class="card-text">
-                  9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
-                </p>
+            <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Thursday</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Jan 24</h6>
+                  <p class="card-text">
+                    9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Friday</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Jan 25</h6>
-                <p class="card-text">
-                  9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
-                </p>
+            <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Friday</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Jan 25</h6>
+                  <p class="card-text">
+                    9°C - 18°C <i class="fas fa-cloud-sun-rain"></i>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+
+    <script src="app.js"></script>
+  </body>
 </html>
