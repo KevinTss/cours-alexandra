@@ -21,16 +21,22 @@
   <body>
     <div class="box">
       <div class="top p-4">
-        <form class="form-search">
-          <input class="form-control" type="text" placeholder="City" />
-          <input class="btn btn-primary" type="button" value="Search" />
+        <form class="form-search" id="form">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="City"
+            id="city-input"
+          />
+          <input class="btn btn-primary" type="submit" value="Search" />
         </form>
 
         <div class="current-temperature">
-          <p>Paris</p>
+          <p id="city">Paris</p>
           <div>
             <i class="fas fa-cloud-sun-rain fa-3x"></i>
-            <span>18°C</span>
+            <span id="temp">18°C / 42°F</span>
+            <span id="time"></span>
           </div>
         </div>
       </div>

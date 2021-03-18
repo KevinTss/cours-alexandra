@@ -20,17 +20,55 @@ let weather = {
     humidity: 20,
   },
 };
-let city = prompt("Enter a city");
-city = city.toLowerCase();
-city = city.trim();
-if (weather[city] !== undefined) {
-  let temperature = Math.round(weather[city].temp);
-  let humidity = weather[city].humidity;
-  alert(
-    `It's currently ${temperature}°C in ${city} with a humidity of ${humidity}%`
-  );
-} else {
-  alert(
-    "Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}"
-  );
-}
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const convertCelsiusToFahrenheit = function (inputCelsius) {
+  // (5°C × 9/5) + 32 = 41°F
+  const fahrenheit = inputCelsius * (9 / 5) + 32;
+
+  return fahrenheit;
+};
+
+const getTime = function () {
+  let time = new Date();
+  let day = days[time.getDay()];
+  let hour = time.getHours();
+  let min = time.getMinutes();
+
+  // Monday - 12:45
+  return `${day} - ${hour}:${min}`;
+};
+
+const form = document.getElementById("form");
+const cityInput = document.querySelector("#city-input");
+const cityDisplay = document.getElementById("city");
+const tempDisplay = document.getElementById("temp");
+const timeDisplay = document.getElementById("time");
+
+timeDisplay.innerText = getTime();
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let city = cityInput.value;
+  city = city.toLowerCase();
+  city = city.trim();
+
+  if (weather[city] !== undefined) {
+    const tempCelsius = Math.round(weather[city].temp);
+    const tempF = convertCelsiusToFahrenheit(tempCelsius);
+    const tempContent = `${tempCelsius}°C / ${tempF}°F`;
+
+    cityDisplay.innerText = city;
+    tempDisplay.innerText = tempContent;
+  } else {
+    console.log("erreur");
+  }
+});
