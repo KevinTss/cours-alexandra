@@ -28,22 +28,35 @@
             placeholder="City"
             id="city-input"
           />
-          <input class="btn btn-primary" type="submit" value="Search" />
+          <button class="btn btn-primary" name="search" id="search-btn">
+            Search
+          </button>
+          <button
+            class="btn btn-primary"
+            name="current-location"
+            id="current-location"
+          >
+            Current location
+          </button>
         </form>
 
         <div class="current-temperature">
           <p id="city">Paris</p>
           <div>
-            <i class="fas fa-cloud-sun-rain fa-3x"></i>
+            <div id="icon">
+              <i class="fas fa-cloud-sun-rain fa-3x"></i>
+            </div>
             <span id="temp">18°C / 42°F</span>
-            <span id="time"></span>
+            <span id="time" class="small"></span>
+            <span id="wind" class="small"></span>
+            <span id="humidity" class="small"></span>
           </div>
         </div>
       </div>
 
       <div class="bottom d-flex align-items-stretch">
         <div class="container p-4 d-flex align-items-stretch">
-          <div class="row d-flex align-items-stretch">
+          <div class="row d-flex align-items-stretch" id="forcast-container">
             <div class="col-sm">
               <div class="card">
                 <div class="card-body">

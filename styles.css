@@ -29,8 +29,8 @@
   align-items: center;
 }
 .current-temperature > p {
-  font-size: 36px;
-  margin-right: 10px;
+  font-size: 20px;
+  margin-right: 5px;
 }
 .current-temperature > div {
   display: flex;
@@ -38,5 +38,13 @@
   align-items: flex-end;
 }
 .current-temperature span {
-  font-size: 36px;
+  font-size: 18px;
+}
+.current-temperature span.small {
+  font-size: 12px;
+}
+.icon-image {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
