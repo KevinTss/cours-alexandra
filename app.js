@@ -3,6 +3,18 @@ let units = "metric";
 let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
 let apiEndpointForcast = "https://api.openweathermap.org/data/2.5/onecall";
 
+const form = document.getElementById("form");
+const cityInput = document.querySelector("#city-input");
+const searchButton = document.querySelector("#search-btn");
+const currentLocationButton = document.querySelector("#current-location");
+const iconDisplay = document.getElementById("icon");
+const cityDisplay = document.getElementById("city");
+const tempDisplay = document.getElementById("temp");
+const timeDisplay = document.getElementById("time");
+const windDisplay = document.getElementById("wind");
+const humidityDisplay = document.getElementById("humidity");
+const forecastContainer = document.getElementById("forcast-container");
+
 function getIcon(iconId) {
   return `http://openweathermap.org/img/wn/${iconId}@2x.png`;
 }
@@ -68,6 +80,8 @@ function displayData(response) {
   windDisplay.innerText = `Wind speed: ${wind}`;
   humidityDisplay.innerText = `Humidity: ${humidity}`;
   timeDisplay.innerText = getDisplayDate();
+
+  return response;
 }
 
 function weekDay(index) {
@@ -106,48 +120,16 @@ function weekDayDate(index) {
   return `${month} ${dayDate}`;
 }
 
-const form = document.getElementById("form");
-const cityInput = document.querySelector("#city-input");
-const searchButton = document.querySelector("#search-btn");
-const currentLocationButton = document.querySelector("#current-location");
-const iconDisplay = document.getElementById("icon");
-const cityDisplay = document.getElementById("city");
-const tempDisplay = document.getElementById("temp");
-const timeDisplay = document.getElementById("time");
-const windDisplay = document.getElementById("wind");
-const humidityDisplay = document.getElementById("humidity");
-const forecastContainer = document.getElementById("forcast-container");
+function displayForcast(res) {
+  let daysTemp = res.daily;
+  let elements = "";
 
-currentLocationButton.addEventListener("click", function (e) {
-  e.preventDefault();
-  // navigator.geolocation.getCurrentPosition(function (position) {
-  //   let lat = position.coords.latitude;
-  //   let lon = position.coords.longitude;
+  daysTemp.slice(0, 5).forEach(function (dailyTemp, index) {
+    let iconId = dailyTemp.weather[0].icon;
+    let tempMin = dailyTemp.temp.min;
+    let tempMax = dailyTemp.temp.max;
 
-  //   // ...
-  // });
-  let lat = 50.8503;
-  let lon = 4.3517;
-
-  fetch(`${apiEndpoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`)
-    .then((r) => r.json())
-    .then(displayData)
-    .then(() =>
-      fetch(
-        `${apiEndpointForcast}?lat=${lat}&lon=${lon}&exclude=current,hourly,minutely&appid=${apiKey}&units=${units}`
-      )
-    )
-    .then((r) => r.json())
-    .then((res) => {
-      let daysTemp = res.daily;
-      let elements = "";
-
-      daysTemp.slice(0, 5).forEach(function (dailyTemp, index) {
-        let iconId = dailyTemp.weather[0].icon;
-        let tempMin = dailyTemp.temp.min;
-        let tempMax = dailyTemp.temp.max;
-
-        let el = `
+    let el = `
         <div class="col-sm">
           <div class="card">
             <div class="card-body">
@@ -162,12 +144,33 @@ currentLocationButton.addEventListener("click", function (e) {
             </div>
           </div>
         </div>
-        `;
+      `;
 
-        elements = elements + el;
-        forecastContainer.innerHTML = elements;
-      });
-    });
+    elements = elements + el;
+    forecastContainer.innerHTML = elements;
+  });
+}
+
+currentLocationButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  navigator.geolocation.getCurrentPosition(function (position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+
+    // let lat = 50.8503;
+    // let lon = 4.3517;
+
+    fetch(`${apiEndpoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`)
+      .then((r) => r.json())
+      .then(displayData)
+      .then(() =>
+        fetch(
+          `${apiEndpointForcast}?lat=${lat}&lon=${lon}&exclude=current,hourly,minutely&appid=${apiKey}&units=${units}`
+        )
+      )
+      .then((r) => r.json())
+      .then(displayForcast);
+  });
 });
 
 searchButton.addEventListener("click", function (e) {
@@ -177,5 +180,12 @@ searchButton.addEventListener("click", function (e) {
 
   fetch(`${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`)
     .then((r) => r.json())
-    .then(displayData);
+    .then(displayData)
+    .then((res) =>
+      fetch(
+        `${apiEndpointForcast}?lat=${res.coord.lat}&lon=${res.coord.lon}&exclude=current,hourly,minutely&appid=${apiKey}&units=${units}`
+      )
+    )
+    .then((r) => r.json())
+    .then(displayForcast);
 });
