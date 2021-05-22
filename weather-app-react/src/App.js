@@ -158,6 +158,3 @@ function App() {
 }
 
 export default App;
-
-// Date
-// Forecast 5 jours
