@@ -152,6 +152,7 @@ function App() {
           </div>
         ))}
       </div>
+      <footer>footer ici...</footer>
     </div>
   );
 }
